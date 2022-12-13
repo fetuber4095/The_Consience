@@ -4,7 +4,17 @@ from time import sleep
 from random import randint 
 from getpass import getpass
 
-__version__ = ["snaphot a12w49", "IAS [SETUPED]", "fetuber4095"]
+
+import socket
+
+
+tcp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+hostname = socket.gethostname()    
+IPAddr = socket.gethostbyname(hostname)
+
+
+__version__ = ["alpha b1.2", "COMMANDS IMPLEMENTED", "fetuber4095"]
 pwd = r"E:\TC"
 
 
@@ -14,42 +24,72 @@ def clear():
 
 class Kernel:
 	def __init__(self):
-		input("COMMING SOON. . .")
+		settings = open("settings.dat", "rt").read()
+		settings = settings.split()
+		self.player = settings[0]
+		self.password = settings[1]
+		self.peraccount = settings[2]
+		self.serial = settings[3]
+		clear()
+		print(f"Universal Consience Console [{__version__[0]} - {__version__[1]}]")
+		print(f"CONNECTED: {self.player}@{IPAddr} - https://github.com/fetuber4095/The_Consience")
+		print(f"")
+		while True:
+			try:
+				cmd = str(input(f"{self.player}@{hostname}: ")).strip()
+				if cmd == "exit":
+					print("Closing programs. . ."), sleep(randint(1, 5))
+					print("Exiting. . ."), sleep(randint(1, 3))
+					break
+				
 
+				elif cmd == "":
+					print("")
+					continue	
+				else:
+					cmd = cmd.split()
+					print(f"{cmd[0]}: Unknow Command!")
+			except Exception as Erro:
+				print(f"{Erro}, It can be an error of code, you can report in the GitHub")	
 if __name__ == '__main__':
 	clear()
 	try:
-		login = open(fr"{pwd}\LOGIN", "rt")
+		login = open(fr"settings.dat", "rt")
 		login.close()
 	except FileNotFoundError:
-		login = open(fr"{pwd}\LOGIN", "wt+")
+		login = open(fr"settings.dat", "wt+")
 		print("Hello, Welcome to the UNIVERSAL CONSIENCE CONSOLE")
-		print("To continue you need create an username to log at Server\n\n")
+		print("To continue you need create an username to log at Server")
+		print("========================================================")
 		username = input("login: ").strip()
 		password = getpass("password: ").strip()
+		serial = randint(100000000000, 999999999999)
 		print("\n\nNow you are registred!")
+		print("========================================================")
 		print("The Universal Console is a Protected Software, you need be authorized to acess")
 		print("If you have a special Key please insert here. Else press ENTER!")
-		entered_key = input("KEY: ")
+		entered_key = getpass("key: ").strip()
 		if entered_key == __version__[2]:
 			entered_key = True
-			print(f"{username}, your account have permission to acess the SECRET SERVER"), sleep(5)
+			print(f"{username}, your account have permission to acess the SECRET SERVER"), sleep(3)
 		else:
 			entered_key = False
-			print(f"Oh {username}, You arent a PERMITTED USER!!!"), sleep(5)
+			print(f"Oh {username}, You arent a PERMITTED USER!!!"), sleep(3)
 
-		login.write(f"{username} {password} {entered_key}")
+		login.write(f"{username} {password} {entered_key} {serial}")
 		login.close()
 		Kernel()
 	else:
-		login = open(fr"{pwd}\LOGIN", "rt")
+		login = open(fr"settings.dat", "rt").read()
 		login = login.split()
-		print(f"USER:{login[0]} PASSWORD: {login[1]} TIPO DE ACCOUNT")
-		print(f"Hello {login[0]}, please insert your password to continue.")
-		try_passed = getpass("password: ").strip()
+		clear()
+		try_passed = getpass(f"password for {login[0]}: ").strip()
 		if try_passed == login[1]:
+			del login
 			Kernel()
 		else:
-			print("Sorry, but this isnt the password to {login[1]}")
+			print(f"Sorry, but this isnt the password to {login[1]}")
+			print("The program will be closed, if you forgot you password type {reset}"), sleep(3)
+
 
 
