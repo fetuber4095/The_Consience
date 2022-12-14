@@ -14,8 +14,24 @@ hostname = socket.gethostname()
 IPAddr = socket.gethostbyname(hostname)
 
 
-__version__ = ["alpha b1.2", "COMMANDS IMPLEMENTED", "fetuber4095"]
+__version__ = ["snapshot r23w23", "Extructure IMPLEMETEND - PART I", "fetuber4095"]
 pwd = r"E:\TC"
+
+
+def prompt(text, player):
+	print(f"{text}")
+	while True:
+		x = input("[S/N] ").strip()
+		if x == "s" or x == "S":
+			result = True
+			break
+		elif x == "n" or x == "N"
+			result = False
+			break
+		else:
+			continue
+ 	return result
+
 
 
 def clear():
@@ -37,7 +53,62 @@ class Kernel:
 		while True:
 			try:
 				cmd = str(input(f"{self.player}@{hostname}: ")).strip()
-				if cmd == "exit":
+				if cmd.startswith("atrribute"):
+					print("Comming Soon...")
+
+				elif cmd.startswith("asset"):
+					print("Comming Soon...")
+				elif cmd.startswith("attemp"):
+					print("Comming Soon...")
+				elif cmd.startswith("ask"):
+					cmd = cmd.replace("ask", "")
+					cmd = cmd.replace("ask ", "")
+					if cmd == "":
+						while True:
+							x = input("[S/N] ").strip()
+							if x == "s" or x == "S":
+								result = True
+								break
+							elif x == "n" or x == "N"
+								result = False
+								break
+							else: 
+								continue
+					else:
+						sla = prompt(cmd, self.player):
+						del sla
+
+				elif cmd.startswith("acess"):
+					print("Comming Soon...")
+
+				elif cmd == "architure":
+
+				elif cmd.startswith("am"):
+					print("Comming Soon...")
+
+				elif cmd.startswith("akward"):
+					print("Comming Soon...")
+
+				elif cmd.startswith("again"):
+					print("Comming Soon...")
+
+				elif cmd.startswith("about"):
+					print("Comming Soon...")
+
+				elif cmd.startswith("assing"):
+					print("Comming Soon...")
+
+				elif cmd.startswith("alias"):
+					print("Comming Soon...")
+
+				elif cmd.startswith("alchemy"):
+					print("Comming Soon...")
+
+
+
+
+
+				elif cmd == "exit":
 					print("Closing programs. . ."), sleep(randint(1, 5))
 					print("Exiting. . ."), sleep(randint(1, 3))
 					break
@@ -63,7 +134,7 @@ if __name__ == '__main__':
 		print("========================================================")
 		username = input("login: ").strip()
 		password = getpass("password: ").strip()
-		serial = randint(100000000000, 999999999999)
+		serial = randint(10000000000, 9999999999999999)
 		print("\n\nNow you are registred!")
 		print("========================================================")
 		print("The Universal Console is a Protected Software, you need be authorized to acess")
