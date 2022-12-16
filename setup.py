@@ -14,26 +14,31 @@ hostname = socket.gethostname()
 IPAddr = socket.gethostbyname(hostname)
 
 
-__version__ = ["snapshot r23w23", "Extructure IMPLEMETEND - PART I", "fetuber4095"]
+__version__ = ["snapshot 22w16irf", "Extructure IMPLEMETEND - PART III", "FeTuber4095"]
 pwd = r"E:\TC"
 
 
 def prompt(text, player):
-	print(f"{text}")
 	while True:
-		x = input("[S/N] ").strip()
+		x = input(rf"{text}[S/N] ").strip()
 		if x == "s" or x == "S":
-			result = True
+			return True
 			break
-		elif x == "n" or x == "N"
-			result = False
+		elif x == "n" or x == "N":
+			return False
 			break
 		else:
 			continue
- 	return result
+ 	
 
-
-
+def update(current_version):
+	x = current_version
+	if x == __version__[0]:
+		system("git fetch")
+		system("git pull")
+	else: 
+		print("Please acess the github repository and UPDATE your system mannualy.")
+		input("https://github.com/fetuber4095/The_Consience")
 def clear():
 	system("cls")
 	pass
@@ -47,72 +52,122 @@ class Kernel:
 		self.peraccount = settings[2]
 		self.serial = settings[3]
 		clear()
-		print(f"Universal Consience Console [{__version__[0]} - {__version__[1]}]")
-		print(f"CONNECTED: {self.player}@{IPAddr} - https://github.com/fetuber4095/The_Consience")
+		print(f"\033[31mUniversal Consience Console \033[39m[\033[35m{__version__[0]} \033[39m- \033[35m{__version__[1]}\033[39m]")
+		print(f"\033[31mCONNECTED: \033[32m{self.player}@{IPAddr} \033[39m- \033[34mhttps://github.com/fetuber4095/The_Consience")
 		print(f"")
 		while True:
 			try:
-				cmd = str(input(f"{self.player}@{hostname}: ")).strip()
+				cmd = str(input(f"\033[32m{self.player}\033[31m@\033[36m{hostname}\033[37m:~$ ")).strip()
+				# A
 				if cmd.startswith("atrribute"):
 					print("Comming Soon...")
-
 				elif cmd.startswith("asset"):
-					print("Comming Soon...")
+					print("Comming Soon...")	
 				elif cmd.startswith("attemp"):
 					print("Comming Soon...")
 				elif cmd.startswith("ask"):
 					cmd = cmd.replace("ask", "")
 					cmd = cmd.replace("ask ", "")
-					if cmd == "":
-						while True:
-							x = input("[S/N] ").strip()
-							if x == "s" or x == "S":
-								result = True
-								break
-							elif x == "n" or x == "N"
-								result = False
-								break
-							else: 
-								continue
-					else:
-						sla = prompt(cmd, self.player):
-						del sla
-
+					sla = prompt(cmd, self.player)
 				elif cmd.startswith("acess"):
 					print("Comming Soon...")
-
 				elif cmd == "architure":
-
-				elif cmd.startswith("am"):
 					print("Comming Soon...")
-
+				elif cmd.startswith("av"):
+					print("Comming Soon...")
 				elif cmd.startswith("akward"):
 					print("Comming Soon...")
-
 				elif cmd.startswith("again"):
 					print("Comming Soon...")
-
 				elif cmd.startswith("about"):
 					print("Comming Soon...")
-
 				elif cmd.startswith("assing"):
 					print("Comming Soon...")
-
 				elif cmd.startswith("alias"):
 					print("Comming Soon...")
-
 				elif cmd.startswith("alchemy"):
 					print("Comming Soon...")
 
+				# B
+				elif cmd == "break":
+					print("Comming Soon...")
+				elif cmd.startswith("bridge"):
+					print("Comming Soon...")
+				elif cmd == "build":
+					print("Comming Soon...")
+				
+				# C
+				elif cmd.startswith("cd"):
+					print("Comming Soon...")
+				elif cmd.startswith("clone"):
+					print("Comming Soon...")
+				elif cmd == "clear":
+					clear()
+					continue
+				elif cmd.startswith("create"):
+					print("Comming Soon...")
 
+				# D
+				elif cmd.startswith("disk"):
+					print("Comming Soon...")
+				elif cmd.startswith("done"):
+					print("Comming Soon...")
+				elif cmd.startswith("driver"):
+					print("Comming Soon...")
+				elif cmd.startswith("delete"):
+					print("Comming Soon...")
 
-
-
+				# E
 				elif cmd == "exit":
 					print("Closing programs. . ."), sleep(randint(1, 5))
 					print("Exiting. . ."), sleep(randint(1, 3))
 					break
-				
+				elif cmd.startswith("echo"):
+					print("Comming Soon...")
+				elif cmd.startswith("erro"):
+					print("Comming Soon...")
+				elif cmd.startswith("end"):
+					print("Comming Soon...")
+				elif cmd.startswith("else"):
+					print("Comming Soon...")
+				elif cmd.startswith("engine"):
+					print("Comming Soon...")
+				elif cmd.startswith("envirroment"):
+					print("Comming Soon...")
+
+				# F
+				# G
+				# H
+				# I
+				# J
+				# K
+				# L
+				elif cmd.startswith("lagg"):
+					cmd = cmd.replace("lagg ", "")
+					cmd = cmd.replace("lagg", "")
+					if cmd == "install":
+						print("To install LAGG you need to give permission to the Console")
+						x = getpass(f"password for {self.player}: ")
+						if x = self.password
+				# M
+				# N 
+				# O
+				# P
+				# Q
+				# R
+				# S
+				# T
+				# U
+				# V
+				# W
+				# X
+				# Y
+				# Z
+
+
+
+
+
 
 				elif cmd == "":
 					print("")
@@ -121,9 +176,10 @@ class Kernel:
 					cmd = cmd.split()
 					print(f"{cmd[0]}: Unknow Command!")
 			except Exception as Erro:
-				print(f"{Erro}, It can be an error of code, you can report in the GitHub")	
+				system(f"msg * {Erro}: It can be an error of code, you can report in the GitHub\nhttps://github.com/fetuber4095/The_Consience")	
 if __name__ == '__main__':
 	clear()
+	update(__version__[0])
 	try:
 		login = open(fr"settings.dat", "rt")
 		login.close()
