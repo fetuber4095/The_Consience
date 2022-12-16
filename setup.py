@@ -15,7 +15,7 @@ hostname = socket.gethostname()
 IPAddr = socket.gethostbyname(hostname)
 
 
-__version__ = ["alpha b1.4", "PKG IMPLEMENTED", "FeTuber4095"]
+__version__ = ["snapshot 22w16", "Extructure IMPLEMETEND - PART IV", "FeTuber4095"]
 __os__ = platform.system()
 
 def prompt(text, player):
@@ -55,13 +55,14 @@ class Kernel:
 		self.password = settings[1]
 		self.peraccount = settings[2]
 		self.serial = settings[3]
+		self.prompt = f"\033[32m{self.player}\033[31m@\033[36m{hostname}\033[37m:~$ "
 		clear()
 		print(f"\033[31mUniversal Consience Console \033[39m[\033[35m{__version__[0]} \033[39m- \033[35m{__version__[1]}\033[39m]")
 		print(f"\033[31mCONNECTED: \033[32m{self.player}@{IPAddr} \033[39m- \033[34mhttps://github.com/fetuber4095/The_Consience")
 		print(f"")
 		while True:
 			try:
-				cmd = str(input(f"\033[32m{self.player}\033[31m@\033[36m{hostname}\033[37m:~$ ")).strip()
+				cmd = str(input(self.prompt)).strip()
 				# A
 				if cmd.startswith("atrribute"):
 					print("Comming Soon...")
@@ -76,7 +77,7 @@ class Kernel:
 				elif cmd.startswith("acess"):
 					print("Comming Soon...")
 				elif cmd == "architure":
-					print("Comming Soon")
+					print(f"{__os__}")
 				elif cmd.startswith("av"):
 					print("Comming Soon...")
 				elif cmd.startswith("akward"):
@@ -145,7 +146,18 @@ class Kernel:
 					print("Exiting. . ."), sleep(randint(1, 3))
 					break
 				elif cmd.startswith("echo"):
-					print("Comming Soon...")
+					cmd = cmd.replace("echo ", "")
+					cmd = cmd.replace("echo", "")
+					if cmd == "":
+						print("")
+					elif cmd.startswith("-c"):
+						cmd = cmd.replace("-c ", "")
+						cmd = cmd.replace("-c", "")
+						self.prompt = cmd
+					elif cmd == "-d":
+						self.prompt = f"\033[32m{self.player}\033[31m@\033[36m{hostname}\033[37m:~$ "
+					else:
+						print(cmd)
 				elif cmd.startswith("erro"):
 					print("Comming Soon...")
 				elif cmd.startswith("end"):
@@ -221,58 +233,64 @@ class Kernel:
 					print(f"{cmd[0]}: Unknow Command!")
 			except Exception as Erro:
 				print(Erro)
-				#system(f"msg * {Erro}: It can be an error of code, you can report in the GitHub\nhttps://github.com/fetuber4095/The_Consience")	
+				system(f"msg * {Erro}: It can be an error of code, you can report in the GitHub\nhttps://github.com/fetuber4095/The_Consience")	
 if __name__ == '__main__':
+	test_v = open("setup.py").read()
 	update(__version__[0])
-	clear()
-	try:
-		login = open(fr"settings.dat", "rt")
-		login.close()
-	except FileNotFoundError:
+	text_p = open("setup.py").read()
+	if test_v == text_p:
 		clear()
-		print("Hello, Welcome to the UNIVERSAL CONSIENCE CONSOLE")
-		print("To continue you need create an username to log at Server")
-		print("========================================================")
-		username = input("login: ").strip()
-		password = getpass("password: ").strip()
-		serial = randint(10000000000, 9999999999999999)
-		print("\n\nNow you are registred!")
-		print("========================================================")
-		print("The Universal Console is a Protected Software, you need be authorized to acess")
-		print("If you have a special Key please insert here. Else press ENTER!")
-		entered_key = getpass("key: ").strip()
-		if entered_key == __version__[2]:
-			entered_key = True
-			print(f"{username}, your account have permission to acess the SECRET SERVER"), sleep(3)
-		else:
-			entered_key = False
-			print(f"Oh {username}, You arent a PERMITTED USER!!!"), sleep(3)
 		try:
-			mkdir("usr")
-		except FileExistsError:
-			pass
-		else:
-			mkdir(r"usr\bin")
-		try:
-			mkdir("home")
-		except FileExistsError:
-			pass
+			login = open(fr"settings.dat", "rt")
+			login.close()
+		except FileNotFoundError:
+			clear()
+			print("Hello, Welcome to the UNIVERSAL CONSIENCE CONSOLE")
+			print("To continue you need create an username to log at Server")
+			print("========================================================")
+			username = input("login: ").strip()
+			password = getpass("password: ").strip()
+			serial = randint(10000000000, 9999999999999999)
+			print("\n\nNow you are registred!")
+			print("========================================================")
+			print("The Universal Console is a Protected Software, you need be authorized to acess")
+			print("If you have a special Key please insert here. Else press ENTER!")
+			entered_key = getpass("key: ").strip()
+			if entered_key == __version__[2]:
+				entered_key = True
+				print(f"{username}, your account have permission to acess the SECRET SERVER"), sleep(3)
+			else:
+				entered_key = False
+				print(f"Oh {username}, You arent a PERMITTED USER!!!"), sleep(3)
+			try:
+				mkdir("usr")
+			except FileExistsError:
+				pass
+			else:
+				mkdir(r"usr\bin")
+			try:
+				mkdir("home")
+			except FileExistsError:
+				pass
 
-		login = open(fr"settings.dat", "wt+")
-		login.write(f"{username} {password} {entered_key} {serial}")
-		login.close()
-		Kernel()
-	else:
-		login = open(fr"settings.dat", "rt").read()
-		login = login.split()
-		clear()
-		try_passed = getpass(f"password for {login[0]}: ").strip()
-		if try_passed == login[1]:
-			del login
+			login = open(fr"settings.dat", "wt+")
+			login.write(f"{username} {password} {entered_key} {serial}")
+			login.close()
 			Kernel()
 		else:
-			print(f"Sorry, but this isnt the password to {login[1]}")
-			print("The program will be closed, if you forgot you password type {reset}"), sleep(3)
-
+			login = open(fr"settings.dat", "rt").read()
+			login = login.split()
+			clear()
+			try_passed = getpass(f"password for {login[0]}: ").strip()
+			if try_passed == login[1]:
+				del login
+				Kernel()
+			else:
+				print(f"Sorry, but this isnt the password to {login[1]}")
+				print("The program will be closed, if you forgot you password type {reset}"), sleep(3)
+	else:
+		print("The system was updated.")
+		input("Press ENTER to restart the console. . .")
+		startfile("setup.py")
 
 
