@@ -1,11 +1,12 @@
 #The Universal Consience
-from os import system
+from os import system, mkdir, chdir, startfile, rename, replace, listdir
 from time import sleep 
 from random import randint 
 from getpass import getpass
 
-
+import sys
 import socket
+import platform
 
 
 tcp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -14,9 +15,8 @@ hostname = socket.gethostname()
 IPAddr = socket.gethostbyname(hostname)
 
 
-__version__ = ["snapshot 22w16irf", "Extructure IMPLEMETEND - PART III", "FeTuber4095"]
-pwd = r"E:\TC"
-
+__version__ = ["alpha b1.4", "PKG IMPLEMENTED", "FeTuber4095"]
+__os__ = platform.system()
 
 def prompt(text, player):
 	while True:
@@ -30,7 +30,8 @@ def prompt(text, player):
 		else:
 			continue
  	
-
+def download(url):
+	system(f"wget {url}")
 def update(current_version):
 	x = current_version
 	if x == __version__[0]:
@@ -40,7 +41,10 @@ def update(current_version):
 		print("Please acess the github repository and UPDATE your system mannualy.")
 		input("https://github.com/fetuber4095/The_Consience")
 def clear():
-	system("cls")
+	if __os__ == 'linux':
+		system("clear")
+	else:
+		system("cls")
 	pass
 
 class Kernel:
@@ -72,7 +76,7 @@ class Kernel:
 				elif cmd.startswith("acess"):
 					print("Comming Soon...")
 				elif cmd == "architure":
-					print("Comming Soon...")
+					print("Comming Soon")
 				elif cmd.startswith("av"):
 					print("Comming Soon...")
 				elif cmd.startswith("akward"):
@@ -95,7 +99,9 @@ class Kernel:
 					print("Comming Soon...")
 				elif cmd == "build":
 					print("Comming Soon...")
-				
+				elif cmd == "bash":
+					print("")
+
 				# C
 				elif cmd.startswith("cd"):
 					print("Comming Soon...")
@@ -116,6 +122,22 @@ class Kernel:
 					print("Comming Soon...")
 				elif cmd.startswith("delete"):
 					print("Comming Soon...")
+				elif cmd.startswith("download"):
+					"""cmd = cmd.replace("download ", "")
+					cmd = cmd.replace("download", "")
+					if cmd == "":
+						print("Insert the file url to download")
+					else:
+						download(cmd)
+						print("===============================================")
+						print("Please, insert the name of file that you tried download")
+						x = input("Filename: ")
+						try:
+							open(x)
+						except Exception as e:
+							print(e)"""
+					print("Comming Soon...")
+
 
 				# E
 				elif cmd == "exit":
@@ -146,13 +168,35 @@ class Kernel:
 					cmd = cmd.replace("lagg ", "")
 					cmd = cmd.replace("lagg", "")
 					if cmd == "install":
-						print("To install LAGG you need to give permission to the Console")
-						x = getpass(f"password for {self.player}: ")
-						if x = self.password
+						print("To install use: 'pkg install lagg'")
+					if cmd == "" or cmd == "start":
+						try:
+							startfile("usr\\bin\\lagg.exe")
+						except FileNotFoundError:
+							print("The LAGG plugin isnt installed")
+							print("To install use: 'pkg install lagg'")
+
 				# M
 				# N 
 				# O
 				# P
+				elif cmd.startswith("pkg"):
+					cmd = cmd.replace("pkg ", "")
+					cmd = cmd.replace("pkg", "")
+					if cmd == "install lagg":
+						print("To install LAGG you need to give permission to the Console")
+						x = getpass(f"password for {self.player}: ")
+						if x == self.password:
+							input("fetching the source code of pkg https://download2282.mediafire.com/cj63qwx3422g/aek61ef2xbxhryd/ReduceMemory.exe:")
+							system("wget https://download2282.mediafire.com/cj63qwx3422g/aek61ef2xbxhryd/ReduceMemory.exe")
+							replace("ReduceMemory.exe", "usr\\bin\\lagg.exe")
+							print("The LAGG Plugin was installed.")
+						else:
+							print(f"This isnt the password for {self.player}")
+					
+
+					else:
+						print("Insert the plugin name to install")
 				# Q
 				# R
 				# S
@@ -176,15 +220,16 @@ class Kernel:
 					cmd = cmd.split()
 					print(f"{cmd[0]}: Unknow Command!")
 			except Exception as Erro:
-				system(f"msg * {Erro}: It can be an error of code, you can report in the GitHub\nhttps://github.com/fetuber4095/The_Consience")	
+				print(Erro)
+				#system(f"msg * {Erro}: It can be an error of code, you can report in the GitHub\nhttps://github.com/fetuber4095/The_Consience")	
 if __name__ == '__main__':
-	clear()
 	update(__version__[0])
+	clear()
 	try:
 		login = open(fr"settings.dat", "rt")
 		login.close()
 	except FileNotFoundError:
-		login = open(fr"settings.dat", "wt+")
+		clear()
 		print("Hello, Welcome to the UNIVERSAL CONSIENCE CONSOLE")
 		print("To continue you need create an username to log at Server")
 		print("========================================================")
@@ -202,7 +247,18 @@ if __name__ == '__main__':
 		else:
 			entered_key = False
 			print(f"Oh {username}, You arent a PERMITTED USER!!!"), sleep(3)
+		try:
+			mkdir("usr")
+		except FileExistsError:
+			pass
+		else:
+			mkdir(r"usr\bin")
+		try:
+			mkdir("home")
+		except FileExistsError:
+			pass
 
+		login = open(fr"settings.dat", "wt+")
 		login.write(f"{username} {password} {entered_key} {serial}")
 		login.close()
 		Kernel()

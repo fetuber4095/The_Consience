@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 settings.dat
+usr/
+home/
+.wget-hsts
 
 # C extensions
 *.so
