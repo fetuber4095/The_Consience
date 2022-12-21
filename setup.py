@@ -15,7 +15,7 @@ hostname = socket.gethostname()
 IPAddr = socket.gethostbyname(hostname)
 
 
-__version__ = ["snapshot 22w16", "Extructure IMPLEMETEND - PART IV", "FeTuber4095"]
+__version__ = ["snapshot 22w21", "Sustentability Experiment", "FeTuber4095"]
 __os__ = platform.system()
 
 def prompt(text, player):
@@ -98,10 +98,16 @@ class Kernel:
 					print("Comming Soon...")
 				elif cmd.startswith("bridge"):
 					print("Comming Soon...")
-				elif cmd == "build":
+				elif cmd.starrtswith("build"):
 					print("Comming Soon...")
 				elif cmd == "bash":
-					print("")
+					if __os__ == "linux":
+						system("bash")
+					else:
+						system("cmd")
+
+
+
 
 				# C
 				elif cmd.startswith("cd"):
@@ -124,20 +130,12 @@ class Kernel:
 				elif cmd.startswith("delete"):
 					print("Comming Soon...")
 				elif cmd.startswith("download"):
-					"""cmd = cmd.replace("download ", "")
+					cmd = cmd.replace("download ", "")
 					cmd = cmd.replace("download", "")
 					if cmd == "":
 						print("Insert the file url to download")
 					else:
 						download(cmd)
-						print("===============================================")
-						print("Please, insert the name of file that you tried download")
-						x = input("Filename: ")
-						try:
-							open(x)
-						except Exception as e:
-							print(e)"""
-					print("Comming Soon...")
 
 
 				# E
