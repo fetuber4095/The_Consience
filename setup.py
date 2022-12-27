@@ -9,13 +9,14 @@ import socket
 import platform
 
 
+
 tcp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
 hostname = socket.gethostname()    
 IPAddr = socket.gethostbyname(hostname)
 
 
-__version__ = ["snapshot 22w21", "Sustentability Experiment", "FeTuber4095"]
+__version__ = ["snapshot 22w27", "EX-Tern Engine Implemented", "FeTuber4095"]
 __os__ = platform.system()
 
 def prompt(text, player):
@@ -51,6 +52,7 @@ class Kernel:
 	def __init__(self):
 		settings = open("settings.dat", "rt").read()
 		settings = settings.split()
+		setup = "setup.py"
 		self.player = settings[0]
 		self.password = settings[1]
 		self.peraccount = settings[2]
@@ -95,11 +97,21 @@ class Kernel:
 
 				# B
 				elif cmd == "break":
-					print("Comming Soon...")
+					break
 				elif cmd.startswith("bridge"):
 					print("Comming Soon...")
-				elif cmd.starrtswith("build"):
-					print("Comming Soon...")
+				elif cmd.startswith("build"):
+					cmd = cmd.replace("build ", "")
+					cmd = cmd.replace("build", "")
+					if cmd == "":
+						try:
+							route = setup.split()
+						except:
+							print("First you need import a setup file")
+						else:
+							download(route[1])
+							print("Skill is building. . .")
+							sleep(randint(1, 9))
 				elif cmd == "bash":
 					if __os__ == "linux":
 						system("bash")
@@ -185,7 +197,20 @@ class Kernel:
 						except FileNotFoundError:
 							print("The LAGG plugin isnt installed")
 							print("To install use: 'pkg install lagg'")
-
+				elif cmd.startswith("load"):
+					cmd = cmd.replace("load ", "")
+					cmd = cmd.replace("load", "")
+					if cmd == "":
+						print("Please insert an filename to import dependences")
+					else:
+						try:
+							x = open(cmd, "rt")
+							x = x.read()
+						except FileNotFoundError:
+							print("System cannot found this file")
+						else:
+							setup = open(cmd, "rt").read()
+							print(f"{cmd}: was imported with sucess")
 				# M
 				# N 
 				# O
@@ -266,10 +291,6 @@ if __name__ == '__main__':
 				pass
 			else:
 				mkdir(r"usr\bin")
-			try:
-				mkdir("home")
-			except FileExistsError:
-				pass
 
 			login = open(fr"settings.dat", "wt+")
 			login.write(f"{username} {password} {entered_key} {serial}")
