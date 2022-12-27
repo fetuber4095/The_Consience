@@ -16,7 +16,7 @@ hostname = socket.gethostname()
 IPAddr = socket.gethostbyname(hostname)
 
 
-__version__ = ["snapshot 22w27", "EX-Tern Engine Implemented", "FeTuber4095"]
+__version__ = ["snapshot 22w27t", "New Packages", "FeTuber4095"]
 __os__ = platform.system()
 
 def prompt(text, player):
@@ -180,6 +180,11 @@ class Kernel:
 					print("Comming Soon...")
 
 				# F
+				elif cmd.startswith("forge"):
+					print("Wait to the GRAND UPDATE OF UNIVERSAL CONSOLE")
+					print("The oficial Launch will be at 2023")
+					print("===========1.0 - DEVICE IMPLEMENTED ==========")
+
 				# G
 				# H
 				# I
@@ -191,12 +196,13 @@ class Kernel:
 					cmd = cmd.replace("lagg", "")
 					if cmd == "install":
 						print("To install use: 'pkg install lagg'")
-					if cmd == "" or cmd == "start":
+					elif cmd == "" or cmd == "start":
 						try:
 							startfile("usr\\bin\\lagg.exe")
 						except FileNotFoundError:
 							print("The LAGG plugin isnt installed")
 							print("To install use: 'pkg install lagg'")
+
 				elif cmd.startswith("load"):
 					cmd = cmd.replace("load ", "")
 					cmd = cmd.replace("load", "")
@@ -222,13 +228,34 @@ class Kernel:
 						print("To install LAGG you need to give permission to the Console")
 						x = getpass(f"password for {self.player}: ")
 						if x == self.password:
-							input("fetching the source code of pkg https://download2282.mediafire.com/cj63qwx3422g/aek61ef2xbxhryd/ReduceMemory.exe:")
-							system("wget https://download2282.mediafire.com/cj63qwx3422g/aek61ef2xbxhryd/ReduceMemory.exe")
-							replace("ReduceMemory.exe", "usr\\bin\\lagg.exe")
-							print("The LAGG Plugin was installed.")
+							if __os__ == 'linux':
+								print("The LAGG Program just can be executed at Windows NT")
+							else:
+								input("fetching the source code of pkg https://download2282.mediafire.com/cj63qwx3422g/aek61ef2xbxhryd/ReduceMemory.exe:")
+								system("wget https://download2282.mediafire.com/cj63qwx3422g/aek61ef2xbxhryd/ReduceMemory.exe")
+								replace("ReduceMemory.exe", "usr\\bin\\lagg.exe")
+								print("The LAGG Plugin was installed.")
 						else:
 							print(f"This isnt the password for {self.player}")
+					elif cmd == "install git":
+						print("To install GIT you need to give permission to the Console")
+						x = getpass(f"password for {self.player}: ")
+						if x == self.password:
+							if __os__ == 'linux':
+								print("Comming Soon. . . ")
+							else:
+								input("fetching the source code of https://github.com/git-for-windows/git/releases/download/v2.39.0.windows.2/Git-2.39.0.2-32-bit.exe:")
+								system("wget https://github.com/git-for-windows/git/releases/download/v2.39.0.windows.2/Git-2.39.0.2-32-bit.exe")
+								replace("Git-2.39.0.2-32-bit.exe", "usr\\bin\\git-installer.exe")
+								print("Opening the GIT Installer. . .")
+								startfile("usr\\bin\\git-installer.exe")
+						else:
+							print(f"This isnt the password for {self.player}")
+					elif cmd == "install forge":
+						print("Forge? It is Comming Soon, you can try after!")
 					
+
+
 
 					else:
 						print("Insert the plugin name to install")
